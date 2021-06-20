@@ -1,0 +1,33 @@
+{% extends 'user/menu.html' %}
+{% block content %}
+
+<div style="margin-top: 150px;margin-bottom: 100px;">
+    <div class="container">
+        {% if results %}
+        <table class="table table-light table-striped">
+            <thead class="thead-dark">
+                <th>Sl.No</th>
+                <th>Exam</th>
+                <th>Date / Time</th>
+                <th>Duration</th>
+                <th>Mark</th>
+            </thead>
+            <tbody>
+                {% for e in results %}
+                <tr>
+                    <td>{{loop.index}}</td>
+                    <td>{{e[1]}}</td>
+                    <td>{{e[2]}} - {{e[3]}}</td>
+                    <td>{{e[4]}} Minutes</td>
+                    <td>{{e[5]}}/20</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <h3 class="text-center text-danger">No Results To Show</h3>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

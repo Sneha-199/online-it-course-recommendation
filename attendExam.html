@@ -1,0 +1,81 @@
+{% extends 'user/menu.html' %}
+{% block content %}
+
+<style>
+    .container {
+        counter-reset: cnt;
+    }
+
+    .qst::before {
+        counter-increment: cnt;
+        content: counter(cnt) ") ";
+        font-weight: bold;
+    }
+</style>
+
+<div style="margin-top: 150px;margin-bottom: 100px;">
+    <div class="container">
+        <div class="row form-group">
+            <div class="col-md-12 text-right">
+                <h6>Duration : <span id="dur">{{duration}}</span> Minutes</h6>
+                <h6>Time Left: <span id="time"></span></h6>
+            </div>
+        </div>
+        <div class="row form-group mb-5">
+            <div class="col-md-12">
+                <h3 class="text-center">{{exam}}</h3>
+            </div>
+        </div>
+        <hr>
+        <div>
+            <form action="" method="post" id="form">
+                {% if questions %}
+                {% for q in questions %}
+                <div class="qs" hidden>{{q[0]}}</div>
+                <div class="row form-group">
+                    <div class="col-md-12 qst">
+                        {{q[1]}}
+                    </div>
+                    <div class="col-md-1"></div>
+                    <div class="col-md-8">
+                        <ul>
+                            <li>{{q[2]}}</li>
+                            <li>{{q[3]}}</li>
+                            <li>{{q[4]}}</li>
+                            <li>{{q[5]}}</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3">
+                        <ul type='none'>
+                            <li>
+                                <input type="radio" name="qst{{q[0]}}" value="1" required>
+                            </li>
+                            <li>
+                                <input type="radio" name="qst{{q[0]}}" value="2" required>
+                            </li>
+                            <li>
+                                <input type="radio" name="qst{{q[0]}}" value="3" required>
+                            </li>
+                            <li>
+                                <input type="radio" name="qst{{q[0]}}" value="4" required>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                {% endfor %}
+                {% endif %}
+                <div class="row form-group">
+                    <div class="col-md-12 text-right">
+                        <button class="btn btn-success" type="submit">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+{% block scripts %}
+<script src="{{url_for('static',filename='assets/js/examController.js')}}"></script>
+{% endblock %}

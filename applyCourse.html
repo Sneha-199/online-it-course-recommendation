@@ -1,0 +1,68 @@
+{% extends 'user/menu.html' %}
+{% block content %}
+
+<div style="margin-top: 150px;margin-bottom: 100px;">
+    <div class="container">
+        {% if status == 0 %}
+        <h2 class="text-center text-danget">You have already applied for this course</h2>
+        {% else %}
+        {% if data %}
+        <div class="container mt-3 p-3 mb-8 shadow bg-light rounded w-50">
+            <h2 class="text-center text-primary">APPLY COURSE</h2>
+            <form action="" id='form' method="post">
+                <div class="row form-group mt-3">
+                    <div class="col-md-12">
+                        <label for="faculty">Select Faculty</label>
+                        <select name="faculty" id="faculty" required class="form-control">
+                            {% for d in data %}
+                            <option value="{{d[0]}}">{{d[1]}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <h5 class="mt-5">Payment Details</h5>
+                <hr>
+                <div class="row form-group">
+                    <div class="col-md-12">
+                        <label for="">Select Payment Method</label>
+                        <br>
+                        <input type="radio" name="radio" checked>Debit Card
+                        <input type="radio" name="radio">Credit Card
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-12">
+                        <label for="">Name On Card</label>
+                        <input type="text" required placeholder="Eg: John Martin" class="form-control">
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-12">
+                        <label for="">Card Number</label>
+                        <input type="text" pattern="[0-9]{16}" required placeholder="XXXX XXXX XXXX XXXX" class="form-control">
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-6">
+                        <label for="">Expiry Date</label>
+                        <input type="month" required class="form-control">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="">CVV</label>
+                        <input type="text" placeholder="XXX" required class="form-control" pattern="[0-9]{3}">
+                    </div>
+                </div>
+                <div class="row form-group mt-3">
+                    <div class="col-md-12" style="text-align: right;">
+                        <button class="btn btn-outline-success" type="submit">Apply</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        {% else %}
+        <h2 class="text-center text-danget">No Faculties Available</h2>
+        {% endif %}
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

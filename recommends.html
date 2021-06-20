@@ -1,0 +1,44 @@
+{% extends 'user/menu.html' %}
+{% block content %}
+
+<div style="margin-top: 150px;margin-bottom: 100px;">
+    <div class="container">
+        {% if data %}
+        {% if utype==1 %}
+        {% for d in data %}
+        <table class="table table-light table-striped">
+            <thead class="thead-dark">
+                <th>Sl.No</th>
+                <th>Course</th>
+                <th>Apply</th>
+            </thead>
+            <tbody id="tb">
+                <tr>
+                    <td>{{loop.index}}</td>
+                    <td>{{d[1]}}</td>
+                    <td>
+                        <button class="btn btn-sm btn-primary" onclick="location.href='/user/applyCourse/{{d[0]}}/'">Apply</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        {% endfor %}
+        {% elif utype==2 %}
+        {% for d in data %}
+        <div id="job_div">
+            <div class="row mt-4 shadow p-3 rounded">
+                <div class="col-md-12">
+                    <h3 class="text-center">{{d[1]}}</h3>
+                    <p>{{d[2]}}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% else %}
+        <h2 class="text-center text-danger">No Recommendations Found</h2>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

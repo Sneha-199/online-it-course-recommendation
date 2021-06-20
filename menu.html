@@ -1,0 +1,15 @@
+{% extends 'template.html' %}
+{% block menu %}
+
+<nav class="nav-menu d-none d-lg-block">
+  <ul>
+    <li><a href="{{url_for('userHome')}}">Home </a></li>
+    <li><a href="{{url_for('userResult')}}">Results </a></li>
+    <li><a href="{{url_for('userRecommends')}}">Recommends </a></li>
+    <li><a href="{{url_for('userAppliedCourse')}}">Applied Courses </a></li>
+    <li><a href="{{url_for('userFeedback')}}">Feedback </a></li>
+  </ul>
+</nav>
+<a href="/logout" class="get-started-btn">Logout</a>
+
+{% endblock %}

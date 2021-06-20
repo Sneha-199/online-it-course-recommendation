@@ -1,0 +1,31 @@
+{% extends 'user/menu.html' %}
+{% block content %}
+
+<div style="margin-top: 150px;margin-bottom: 100px;">
+    <div class="container">
+        {% if courses %}
+        <table class="table table-light table-striped">
+            <thead class="thead-dark">
+                <th>Sl.No</th>
+                <th>Course Name</th>
+                <th>Exams</th>
+            </thead>
+            <tbody>
+                {% for e in courses %}
+                <tr>
+                    <td>{{loop.index}}</td>
+                    <td>{{e[1]}}</td>
+                    <td>
+                        <button class="btn btn-sm btn-primary" onclick="location.href='/user/exams/{{e[0]}}/'">Exams</button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <h3 class="text-center text-danger">No Courses To Show</h3>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

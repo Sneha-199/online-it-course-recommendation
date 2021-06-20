@@ -1,0 +1,60 @@
+{% extends 'user/menu.html' %}
+{% block content %}
+
+<div style="margin-top: 150px;margin-bottom: 100px;">
+    <div class="container" id="main_div">
+        <div class="row form-group">
+            <div class="col-12">
+                <button class="btn btn-success" onclick="showHide()">Send Feedback</button>
+            </div>
+        </div>
+        {% if data %}
+        {% for d in data %}
+            <div class="shadow card rounded bg-light p-3">
+                <div class="row">
+                    <div class="col">
+                        <span>Date : {{d[3]}}</span>
+                        <p class="mt-2">{{d[2]}}</p>
+                        <h5>Reply : </h5>
+                        <hr>
+                        <p>
+                            {% if d[4] %}
+                            {{d[4]}}
+                            {% else %}
+                            No Reply
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        {% else %}
+        <h2 class="text-center text-danger">No Feedbacks to show</h2>
+        {% endif %}
+    </div>
+
+    <div class="container mt-3 p-3 mb-8 shadow bg-light rounded w-50" id="add_div">
+        <h2 class="text-center text-primary">FEEDBACK</h2>
+        <form action="" id='form' method="post">
+            <div class="row form-group mt-3">
+                <div class="col-md-12">
+                    <label for="message">Message</label>
+                    <textarea name="message" id="message" cols="30" rows="4" class="form-control" required placeholder="Type Message"></textarea>
+                </div>
+            </div>
+            <div class="row form-group mt-3">
+                <div class="col-md-12" style="text-align: right;">
+                    <button class="btn btn-outline-secondary" type="button"
+                        onclick="showHide()">Cancel</button>
+                    <button class="btn btn-outline-success" type="submit">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+{% endblock %}
+{% block scripts %}
+<script src="{{url_for('static',filename='assets/js/showHide.js')}}"></script>
+{% endblock %}
