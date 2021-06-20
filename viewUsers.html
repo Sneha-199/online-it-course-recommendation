@@ -1,0 +1,35 @@
+{% extends 'admin/menu.html' %}
+{% block content %}
+
+<div style="margin-top: 150px;margin-bottom: 100px;">
+<div class="container">
+    {% if users %}
+    <h2 class="text-center text-primary">USER LIST</h2>
+    <br>
+    <table class="table table-light table-striped">
+        <thead class="thead-dark">
+            <th>Sl.No</th>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Details</th>
+        </thead>
+        <tbody>
+            {% for u in users %}
+            <tr>
+                <td>{{loop.index}}</td>
+                <td>{{u[1]}}</td>
+                <td>{{u[2]}}</td>
+                <td>
+                    <button class="btn btn-sm btn-outline-info" onclick="location.href='/admin/userDetails/{{u[0]}}/'">View</button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <h3 class="text-center text-danger">No Users To Show</h3>
+    {% endif %}
+</div>
+</div>
+
+{% endblock  %}

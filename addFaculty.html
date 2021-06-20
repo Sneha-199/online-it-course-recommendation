@@ -1,0 +1,116 @@
+{% extends 'admin/menu.html' %}
+{% block content %}
+
+<div style="margin-top: 150px; margin-bottom: 100px;">
+    <div class="container w-50 shadow p-4 rounded" data-aos="zoom-in" data-aos-delay="100">
+        <h1 class="text-center">Add Faculty</h1>
+        <form action="" id="reg_form" method="post" enctype="multipart/form-data">
+            <div class="row form-group mt-3">
+                <div class="col-md-6">
+                    <label for="fname">First Name</label>
+                    <input type="text" name="fname" value="{{data['fname']}}" minlength="3" pattern="[a-zA-Z]+"
+                        id="fname" placeholder="First Name" class="form-control" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="lname">Last Name</label>
+                    <input type="text" name="lname" value="{{data['lname']}}" minlength="3" pattern="[a-zA-Z]+"
+                        id="lname" placeholder="Last Name" class="form-control" required>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-12">
+                    <label for="place">Place</label>
+                    <input type="text" name="address" required placeholder="Place" id="address"
+                        class="form-control" value="{{data['address']}}" />
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-6">
+                    <label for="gender">Gender</label>
+                    <br>
+                    <input type="radio" checked name="gender" value="male">Male
+                    <input type="radio" {% if data['gender']=='female' %} checked {% endif %} style="margin-left: 30%;"
+                        name="gender" value="female">Female
+                </div>
+                <div class="col-md-6">
+                    <label for="dob">Date Of Birth</label>
+                    <input type="date" value="{{data['dob']}}" required name="dob" max='' id="dob" class="form-control">
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-12">
+                    <label for="qualification">Qualification</label>
+                    <input type="text" name="qualification" required placeholder="Qualification" id="qualification"
+                        class="form-control" value="{{data['qualification']}}" />
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-6">
+                    <label for="course">Select Course</label>
+                    <select name="course" id="course" required class="form-control">
+                        {% for c in courses %}
+                        <option value="{{c[0]}}" {% if data['course']==c[0] %} selected {% endif %}>{{c[1]}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="subject">Select Subject</label>
+                    <select name="subject" id="subject" required class="form-control">
+                        {% for s in subjects %}
+                        <option value="{{s[0]}}" {% if data['subject']==s[0] %} selected {% endif %}>{{s[1]}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-6">
+                    <label for="phone">Phone Number</label>
+                    <input type="text" id="phone" value="{{data['phone']}}" required placeholder="Phone Number"
+                        class="form-control" pattern="[0-9]{10}" name="phone">
+                </div>
+                <div class="col-md-6">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" value="{{data['email']}}" id="email" required placeholder="Email"
+                        class="form-control">
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-12">
+                    <label for="photo">Photo</label>
+                    <input type="file" name="photo" id="photo" required class="form-control">
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-6">
+                    <label for="pword">Password</label>
+                    <input type="password" id="pword" name="pword" placeholder="Password" class="form-control" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="cpword">Confirm Password</label>
+                    <input type="password" id="cpword" name="cpword" placeholder="Confirm Password" class="form-control"
+                        required>
+                </div>
+            </div>
+            <div class="row form-group mt-2">
+                <div class="col-md-12 alert-danger">
+                    {% with msg = get_flashed_messages() %}
+                    {% if msg %}
+                    {{msg[0]}}
+                    {% endif %}
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="row form-group mt-3" style="text-align: right;">
+                <div class="col-md-12">
+                    <button class="btn btn-secondary" type="reset">Cancel</button>
+                    <button class="btn btn-success" type="submit">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
+{% block scripts %}
+<script src="{{url_for('static',filename='assets/js/courseController.js')}}"></script>
+{% endblock %}

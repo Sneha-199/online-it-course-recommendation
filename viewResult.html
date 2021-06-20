@@ -1,0 +1,36 @@
+{% extends 'admin/menu.html' %}
+{% block content %}
+
+<div style="margin-top: 150px;margin-bottom: 100px;">
+    <div class="container">
+        {% if results %}
+        <div id="result_data">
+            <table class="table table-light table-striped">
+                <thead class="thead-dark">
+                    <th>Sl.No</th>
+                    <th>Name</th>
+                    <th>Mark</th>
+                </thead>
+                <tbody>
+                    {% for r in results %}
+                    <tr>
+                        <td>{{loop.index}}</td>
+                        <td>{{r[2]}}</td>
+                        <td>{{r[1]}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="text-right">
+            <button class="btn btn-primary" onclick="reportGenerate()">Generate Report</button>
+        </div>
+        {% else %}
+        <h3 class="text-center text-danger">No Results To Show</h3>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="{{url_for('static',filename='assets/js/reportController.js')}}"></script>
+{% endblock %}

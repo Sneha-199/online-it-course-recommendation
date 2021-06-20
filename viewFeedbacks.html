@@ -1,0 +1,72 @@
+{% extends 'admin/menu.html' %}
+{% block content %}
+
+<div style="margin-top: 150px;margin-bottom: 100px;">
+<div class="container" id="main_div">
+    {% with msg = get_flashed_messages() %}
+        {% if msg %}
+            <div class="alert-success text-center">{{msg[0]}}</div>
+        {% endif %}
+    {% endwith %}
+    {% if feedbacks %}
+    <h2 class="text-center text-primary">FEEDBACKS</h2>
+    {% for f in feedbacks %}
+    <div class="rounded shadow p-3 bg-light mt-5">
+        <div class="row form-group">
+            <div class="col-md-12">
+                <h6>{{f[4]}}</h6>
+                {{f[2]}}
+            </div>
+        </div>
+        <div class="row form-group mt-2">
+            <div class="col-md-12">
+                <p>{{f[1]}}</p>
+            </div>
+        </div>
+        {% if f[3] != None %}
+            <hr>
+            <h5>Reply</h5>
+            <div class="row form-group">
+                <div class="col-md-12">
+                    <p>{{f[3]}}</p>
+                </div>
+            </div>
+        {% else %}
+        <div class="row form-group">
+            <div class="col-md-12" style="text-align: right;">
+                <button class="btn btn-primary" onclick="reply({{f[0]}})">Reply</button>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+    {% endfor %}
+    {% else %}
+    <h2 class="text-center text-danger">No Feedbacks To Show</h2>
+    {% endif %}
+</div>
+
+<div class="container p-3 bg-light mt-9 mb-9 w-50" id="reply_div">
+    <h3 class="text-center text-primary">REPLY</h3>
+    <form action="" method="post">
+        <input type="hidden" name="fid" id="fid">
+        <div class="row form-group mt-2">
+            <div class="col-md-12">
+                <label for="reply"></label>
+                <textarea name="reply" id="reply" cols="30" rows="5" class="form-control" required></textarea>
+            </div>
+        </div>
+        <div class="row form-group mt-2">
+            <div class="col-md-12" style="text-align: right;">
+            <button type="button" class="btn btn-outline-secondary" onclick="cancel()">Cancel</button>
+            <button type="submit" class="btn btn-outline-success">Send</button>
+        </div>
+        </div>
+    </form>
+</div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{{url_for('static',filename='assets/js/feedbackController.js')}}"></script>
+{% endblock  %}

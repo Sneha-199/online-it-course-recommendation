@@ -1,0 +1,76 @@
+{% extends 'admin/menu.html' %}
+{% block content %}
+
+<div style="margin-top: 150px;margin-bottom: 100px;">
+    <div class="container" id="main_div">
+        <div class="row form-group">
+            <div class="col-md-8">
+                <button class="btn btn-success" onclick="showHide()">Recommend Subject</button>
+            </div>
+        </div>
+        {% if data %}
+        <table class="table table-light table-striped">
+            <thead class="thead-dark">
+                <th>Sl.No</th>
+                <th>Mark</th>
+                <th>Course</th>
+                <th>Delete</th>
+            </thead>
+            <tbody>
+            {% for d in data %}
+            <tr>
+                <td>{{loop.index}}</td>
+                <td>{{d[1]}} - {{d[2]}}</td>
+                <td>{{d[3]}}</td>
+                <td>
+                    <button class="btn btn-sm btn-danger" onclick='location.href="/admin/recommend/delete/{{d[0]}}/{{eid}}/"'>Delete</button>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <h3 class="text-center text-danger" id="msg">No Recommendations To Show</h3>
+        {% endif %}
+    </div>
+
+    <div class="container p-3 shadow bg-light rounded w-50" id="add_div">
+        <h2 class="text-center text-primary">ADD RECOMMENDATION</h2>
+        <form action="" method="post" id="form">
+            <input type="hidden" name="rec_type" value="course">
+            <div class="row form-group mt-3">
+                <div class="col-md-6">
+                    <label for="from">Mark From</label>
+                    <input type="number" min="0" max="20" id="from" name="from" placeholder="Mark From" required
+                        class="form-control">
+                </div>
+                <div class="col-md-6">
+                    <label for="to">Mark To</label>
+                    <input type="number" min="0" max="20" id="to" name="to" placeholder="Mark To" required
+                        class="form-control">
+                </div>
+            </div>
+            <div class="row form-group mt-3">
+                <div class="col-md-12">
+                    <label for="subject">Subject</label>
+                    <select name="subject" id="subject" required class="form-control">
+                        {% for s in subjects %}
+                        <option value="{{s[0]}}">{{s[1]}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="row form-group mt-3">
+                <div class="col-md-12" style="text-align: right;">
+                    <button class="btn btn-outline-secondary" type="button" onclick="showHide()">Cancel</button>
+                    <button class="btn btn-outline-success" type="submit">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
+{% block scripts %}
+<script src="{{url_for('static',filename='assets/js/showHide.js')}}"></script>
+{% endblock %}

@@ -5,7 +5,7 @@
 <div class="container">
     <div class="row form-group mb-5">
         <div class="col">
-            <button class="btn btn-primary" onclick="showHide()">Add Course</button>
+            <button class="btn btn-primary" onclick="showHide()">Add Subject</button>
         </div>
     </div>
     {% with msg = get_flashed_messages() %}
@@ -14,39 +14,39 @@
         {% endif %}
     {% endwith %}
     <div id="main_div">
-        {% if courses %}
+        {% if subjects %}
         <table class="table table-light table-striped">
             <thead class="thead-dark">
                 <th>Sl.No</th>
-                <th>Course Name</th>
-                <th>Subjects</th>
+                <th>Subject Name</th>
+                <th>Delete</th>
             </thead>
             <tbody>
-                {% for c in courses %}
+                {% for s in subjects %}
                 <tr>
                     <td>{{loop.index}}</td>
-                    <td>{{c[1]}}</td>
+                    <td>{{s[1]}}</td>
                     <td>
-                        <button class="btn btn-sm btn-outline-info"
-                            onclick="location.href='/admin/viewSubjects/{{c[0]}}/'">View</button>
+                        <button class="btn btn-sm btn-outline-danger"
+                            onclick="location.href='/admin/deleteSubject/{{s[0]}}/{{s[2]}}'">Delete</button>
                     </td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
         {% else %}
-        <h3 class="text-center text-danger">No Courses To Show</h3>
+        <h3 class="text-center text-danger">No Subjects To Show</h3>
         {% endif %}
     </div>
 </div>
 
 <div class="container mt-3 p-3 mb-8 shadow bg-light rounded w-50" id="add_div">
-    <h2 class="text-center text-primary">ADD COURSE</h2>
-    <form action="" id='form' method="post">
+    <h2 class="text-center text-primary">ADD SUBJECT</h2>
+    <form action="" method="post">
         <div class="row form-group mt-3">
             <div class="col-md-12">
-                <label for="name">Course Name</label>
-                <input type="text" id="name" name="name" placeholder="Course Name" required class="form-control">
+                <label for="name">Subject Name</label>
+                <input type="text" id="name" name="name" placeholder="Subject Name" required class="form-control">
             </div>
         </div>
         <div class="row form-group mt-3">
