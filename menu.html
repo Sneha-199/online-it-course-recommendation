@@ -2,19 +2,12 @@
 {% block menu %}
 
 <nav class="nav-menu d-none d-lg-block">
-        <ul>
-          <li><a href="{{url_for('adminHome')}}">Home</a></li>
-        <li><a href="{{url_for('adminCourse')}}">Courses</a></li>
-        <li><a href="{{url_for('viewUsers')}}">View Users </a></li>
-        <li class="drop-down"><a href="#">Faculty</a>
-            <ul>
-              <li><a href="{{url_for('addFaculty')}}">Add Faculty</a></li>
-              <li><a href="{{url_for('viewFaculty')}}">Manage Faculty</a></li>
-            </ul>
-          </li>
-        <li><a href="{{url_for('viewFeedbacks')}}">Feedbacks </a></li>
-        </ul>
-      </nav>
-      <a href="/logout" class="get-started-btn">Logout</a>
+  <ul>
+    <li><a href="{{url_for('facultyHome')}}">Home </a></li>
+    <li><a href="{{url_for('facultySubject')}}">Subjects </a></li>
+    <li><a href="{{url_for('appliedList')}}">Applied List </a></li>
+  </ul>
+</nav>
+<a href="/logout" class="get-started-btn">Logout</a>
 
-{% endblock  %}
+{% endblock %}

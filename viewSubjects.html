@@ -1,13 +1,8 @@
-{% extends 'admin/menu.html' %}
+{% extends 'faculty/menu.html' %}
 {% block content %}
 
 <div style="margin-top: 150px;margin-bottom: 100px;">
 <div class="container">
-    <div class="row form-group mb-5">
-        <div class="col">
-            <button class="btn btn-primary" onclick="showHide()">Add Subject</button>
-        </div>
-    </div>
     {% with msg = get_flashed_messages() %}
         {% if msg %}
             <div class="alert-danger text-center">{{msg[0]}}</div>
@@ -19,7 +14,7 @@
             <thead class="thead-dark">
                 <th>Sl.No</th>
                 <th>Subject Name</th>
-                <th>Delete</th>
+                <th>Questions</th>
             </thead>
             <tbody>
                 {% for s in subjects %}
@@ -27,8 +22,8 @@
                     <td>{{loop.index}}</td>
                     <td>{{s[1]}}</td>
                     <td>
-                        <button class="btn btn-sm btn-outline-danger"
-                            onclick="location.href='/admin/deleteSubject/{{s[0]}}/{{s[2]}}'">Delete</button>
+                        <button class="btn btn-sm btn-outline-primary"
+                            onclick="location.href='/faculty/viewQuestions/{{s[0]}}/'">Questions</button>
                     </td>
                 </tr>
                 {% endfor %}

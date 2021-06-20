@@ -3,31 +3,28 @@
 
 <div style="margin-top: 150px;margin-bottom: 100px;">
     <div class="container">
-        {% if exams %}
+        {% if data %}
         <table class="table table-light table-striped">
             <thead class="thead-dark">
                 <th>Sl.No</th>
-                <th>title</th>
-                <th>Subject</th>
-                <th>Date / Time</th>
-                <th>Duration</th>
+                <th>Course</th>
+                <th>Student</th>
+                <th>Date</th>
             </thead>
             <tbody>
-                {% for e in exams %}
+                {% for d in data %}
                 <tr>
                     <td>{{loop.index}}</td>
-                    <td>{{e[1]}}</td>
-                    <td>{{e[5]}}</td>
-                    <td>{{e[2]}} - {{e[3]}}</td>
-                    <td>{{e[4]}} Minutes</td>
+                    <td>{{d[3]}}</td>
+                    <td>{{d[2]}}</td>
+                    <td>{{d[1]}}</td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
         {% else %}
-        <h3 class="text-center text-danger">No Exams To Show</h3>
+        <h3 class="text-center text-danger">No Data Found</h3>
         {% endif %}
     </div>
 </div>
-
 {% endblock %}
